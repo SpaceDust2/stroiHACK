@@ -1,4 +1,5 @@
 // components/Sidebar.tsx
+import Link from "next/link";
 import React from "react";
 import {
     FaUsers,
@@ -13,22 +14,32 @@ import {
 
 const Sidebar = () => {
     return (
-        <div className="w-[100px] h-screen bg-[#F8F8F7] text-white flex flex-col rounded-3xl my-5 shadow-md items-center py-4">
+        <div className="w-[100px]  h-[600px] bg-[#F8F8F7] text-white flex flex-col rounded-3xl my-10 shadow-md items-center py-4">
             <div className="mb-8">
-                <img src="/1.jpg" alt="Logo" className="w-12 h-12" />
+                <Link href="/">
+                    <img src="/4.png" alt="Logo" className="w-10 h-10" />
+                </Link>
             </div>
             <div className="flex flex-col space-y-6">
                 <button className="text-black hover:text-blue-500">
-                    <FaUsers size={24} />
+                    <Link href="/workers">
+                        <FaUsers size={24} />
+                    </Link>
                 </button>
                 <button className="text-black hover:text-blue-500">
-                    <FaTools size={24} />
+                    <Link href="/machine">
+                        <FaTools size={24} />
+                    </Link>
                 </button>
                 <button className=" text-black hover:text-blue-500">
-                    <FaTasks size={24} />
+                    <Link href="/gant">
+                        <FaTasks size={24} />
+                    </Link>
                 </button>
                 <button className="text-black hover:text-blue-500">
-                    <FaChartLine size={24} />
+                    <Link href="/charts">
+                        <FaChartLine size={24} />
+                    </Link>
                 </button>
                 <button className="text-black hover:text-blue-500">
                     <FaClipboardList size={24} />
@@ -37,10 +48,14 @@ const Sidebar = () => {
                     <FaFileAlt size={24} />
                 </button>
                 <button className="text-black hover:text-blue-500">
-                    <FaDrawPolygon size={24} />
+                    <Link href="/camera">
+                        <FaDrawPolygon size={24} />
+                    </Link>
                 </button>
                 <button className="text-black hover:text-blue-500">
-                    <FaHandshake size={24} />
+                    <Link href="/contragent">
+                        <FaHandshake size={24} />
+                    </Link>
                 </button>
             </div>
         </div>

@@ -1,0 +1,95 @@
+/* styles.module.css */
+
+.ViewContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .Button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Button:hover {
+    background-color: #45a049;
+  }
+  
+  .Switch {
+    display: flex;
+    align-items: center;
+  }
+  
+  .Switch_Toggle {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+  }
+  
+  .Switch_Toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .Slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .Slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .Slider {
+    background-color: #4caf50;
+  }
+  
+  input:checked + .Slider:before {
+    transform: translateX(16px);
+  }
+  
+  .Switch_Toggle input:checked {
+    display: none;
+  }
+  
+  .Switch_Toggle input:focus + .Slider {
+    box-shadow: 0 0 1px #4caf50;
+  }
+  
+  .Switch_Toggle:hover {
+    opacity: 0.8;
+    filter: brightness(110%);
+  }
+  
+  .Switch_Toggle:hover .Slider {
+    background-color: #ccc;
+  }
+  
+  .Switch_Toggle:hover input:checked + .Slider {
+    background-color: #4caf50;
+  }

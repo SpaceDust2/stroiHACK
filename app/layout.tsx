@@ -20,15 +20,15 @@ export default function RootLayout({
         <html lang="en">
             <body className="font-inter">
                 <div className="flex h-screen">
-                    {/* <!-- Сайдбар с отступом слева --> */}
-                    <div className="w-40 pl-8">
+                    {/* <!-- Сайдбар с отступом слева и фиксированной позицией --> */}
+                    <div className="fixed w-56 h-full overflow-y-auto pl-8">
                         <Sidebar />
                     </div>
 
-                    {/* <!-- Контентная область с хедером и основным контентом --> */}
-                    <div className="flex-1 flex flex-col">
+                    {/* <!-- Контентная область с отступом для сайдбара и хедером --> */}
+                    <div className="flex-1 flex flex-col pl-56">
                         {/* <!-- Хедер прибит к верху --> */}
-                        <header className="bg-white  p-4">
+                        <header className="bg-white p-4">
                             <Header />
                         </header>
 

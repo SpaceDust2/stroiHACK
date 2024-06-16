@@ -1,14 +1,28 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { FaBell, FaCommentDots, FaUser, FaSearch } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+
+const tabTitles: { [key: string]: string } = {
+    "/workers": "Работники",
+    "/machine": "Техника",
+    "/gant": "Диграмма Ганта",
+    "/charts": "Графики",
+    "/tasks": "Задачи",
+    "/reports": "Отчеты",
+    "/camera": "Управления камерами",
+    "/contragent": "Контрагент",
+    "/": "Главная страница",
+};
 
 interface HeaderProps {
     selectedTab?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ selectedTab }) => {
+const Header: React.FC<HeaderProps> = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const title = selectedTab ? selectedTab : "Dashboard";
+    const pathname = usePathname();
+    const title = tabTitles[pathname] || "Главная страница";
 
     return (
         <header className="flex items-center justify-between p-4 bg-white">

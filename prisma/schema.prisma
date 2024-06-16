@@ -1,0 +1,113 @@
+datasource db {
+  provider = "postgresql" // Укажите ваш источник данных
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Employee {
+  id                   Int       @id @default(autoincrement())
+  name                 String
+  position             String
+  workload             Float     // Процент загруженности
+  assignedTasksCount   Int
+  completedTasksCount  Int
+  nextDeadline         DateTime?
+  requestsCount        Int
+  taskStatus           String    // "В процессе", "Выполнено", "Просрочено"
+  employeeCard         EmployeeCard?
+}
+
+model EmployeeCard {
+  id              Int       @id @default(autoincrement())
+  photo           String?
+  name            String
+  position        String
+  phone           String?
+  email           String?
+  employeeId      Int       @unique
+  employee        Employee  @relation(fields: [employeeId], references: [id])
+}
+
+model Equipment {
+  id                   Int       @id @default(autoincrement())
+  model                String
+  type                 String
+  workload             Float     // Процент загруженности
+  assignedTasksCount   Int
+  completedTasksCount  Int
+  nextDeadline         DateTime?
+  damageNotification   String    // "Нет повреждений", "Есть повреждения"
+  routes               String    // Планируемые и реальные маршруты
+  equipmentCard        EquipmentCard?
+}
+
+model EquipmentCard {
+  id                   Int       @id @default(autoincrement())
+  photo                String?
+  equipmentId          Int       @unique
+  model                String
+  type                 String
+  contactInfo          String?
+  equipment            Equipment @relation(fields: [equipmentId], references: [id])
+}
+
+model Task {
+  id                   Int       @id @default(autoincrement())
+  title                String
+  description          String?
+  startDate            DateTime
+  endDate              DateTime
+  priority             String
+  status               String    // "В процессе", "Выполнено", "Просрочено"
+  assignedEmployees    Employee[]
+  resources            Resource[]
+  comments             Comment[]
+  files                File[]
+}
+
+model Resource {
+  id                   Int       @id @default(autoincrement())
+  name                 String
+  quantity             Int
+  tasks                Task[]
+}
+
+model Comment {
+  id                   Int       @id @default(autoincrement())
+  content              String
+  taskId               Int
+  task                 Task      @relation(fields: [taskId], references: [id])
+}
+
+model File {
+  id                   Int       @id @default(autoincrement())
+  url                  String
+  taskId               Int
+  task                 Task      @relation(fields: [taskId], references: [id])
+}
+
+model Project {
+  id                   Int       @id @default(autoincrement())
+  name                 String
+  description          String?
+  tasks                Task[]
+}
+
+model User {
+  id                   Int       @id @default(autoincrement())
+  username             String    @unique
+  password             String
+  role                 String    // Различные уровни доступа
+  actions              Action[]
+}
+
+model Action {
+  id                   Int       @id @default(autoincrement())
+  userId               Int
+  actionType           String
+  timestamp            DateTime  @default(now())
+  user                 User      @relation(fields: [userId], references: [id])
+}
